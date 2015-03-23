@@ -1,0 +1,10 @@
+
+@font-face {
+	font-family: 'fira sans ultralight';
+	src: 
+		url('../fonts/FiraSans-UltraLight.eot') format('embedded-opentype'),
+		url('../fonts/FiraSans-UltraLight.woff') format('woff'),
+		url('../fonts/FiraSans-UltraLight.ttf') format('truetype');
+	font-weight: 200;
+	font-style: normal;
+}

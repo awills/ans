@@ -1,0 +1,75 @@
+	
+	html, body{
+		margin:0;
+		height:100%;
+	}
+	
+	div{
+		position:relative;
+		overflow:hidden;
+	}
+	
+	button{
+		display:block;
+		float:left;
+		border:none;
+		outline:none;
+		border-radius:0;
+		height:100%;
+		width:25%;
+		line-height:100%;
+		font-size:100%;
+		font-family:inherit;
+		color:#000;
+		background:none;
+	}
+	
+	button:focus{
+		background-color:#70BF53;
+		color:#fff;
+	}
+	
+	p{
+		position:absolute;
+		right:3px; /* def. margin */
+		bottom:3px;
+		margin:0;
+		line-height:100%; /* association with path */
+		white-space:nowrap;
+	}
+	
+	#appcont{
+		height:100%;
+		line-height:100%;
+		font-family:fira sans ultralight;
+		font-size:85%;
+		background-color:#fff;
+	}
+	
+	#appcont > div{
+		height:14.28571428571429%;
+	}
+	
+	#appcont > div:first-child, #appcont > div:last-child{
+		height:7.142857142857143%;
+		font-size:50%;
+	}
+	
+	#appcont > div:first-child button{
+		width:16.66666666666667%;
+	}
+	
+	.green{
+		background-color:green;
+		color:#fff;
+	}
+	
+	.smoken{
+		font-size:75%;
+		color:#666;
+	}
+	
+	.lighter{
+		font-size:75%;
+		color:#999;
+	}
