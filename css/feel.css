@@ -13,7 +13,6 @@
 		display:block;
 		float:left;
 		border:none;
-		outline:none;
 		border-radius:0;
 		height:100%;
 		width:25%;
@@ -24,7 +23,12 @@
 		background:none;
 	}
 	
+	button::-moz-focus-inner{
+		border:none; /* no tab navigation */
+	}
+	
 	button:focus{
+		outline:none;
 		background-color:#70BF53;
 		color:#fff;
 	}
@@ -40,9 +44,9 @@
 	
 	#appcont{
 		height:100%;
-		line-height:100%;
 		font-family:fira sans ultralight;
 		font-size:85%;
+		line-height:115%;
 		background-color:#fff;
 	}
 	

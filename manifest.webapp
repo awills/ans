@@ -1,7 +1,7 @@
 {
 	"name": "Ansii" ,
 	"description": "everyday calculator" ,
-	"version": "v1.0" ,
+	"version": "v1.1" ,
 	"default_locale": "en" ,
 	"developer": {
 		"name": "Williams Edem" ,
@@ -9,8 +9,7 @@
 	} ,
 	"launch_path": "/index.html" ,
 	"icons": {
-		"60": "/img/icon60.png" ,
 		"128": "/img/icon128.png" ,
-		"256": "/img/icon256.png"
+		"60": "/img/icon60.png" 
 	} 
 }
