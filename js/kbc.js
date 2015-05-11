@@ -19,12 +19,12 @@
 			if(characteraction[this.textContent]){
 													  /* self */ 
 				characteraction[this.textContent](p[0], this, overflowindicator) ;
-				overflowchk(3)
+				overflowchk(1)
 				return
 			}
 			
 			write(this.textContent) ;
-			overflowchk(3)
+			overflowchk(1)
 		} ;
 		
 		for(; a<ln; a++){
@@ -76,7 +76,7 @@
 		
 			if(move[swipe.dir] && swipe.length && hasValue()){
 				
-				overflowchk(3) ; /* auto notify overflow */
+				overflowchk(1) ; /* auto notify overflow */
 				move[swipe.dir](3) 
 			} 
 		}) 

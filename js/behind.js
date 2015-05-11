@@ -8,7 +8,7 @@
 		'C': function(el, self, indicator){
 		
 			el.innerHTML="" ;
-			el.style.right="3px" /* goto end */
+			el.style.right=0 /* goto end */
 			indicator.innerHTML="&laquo;" /* def. dir */
 		} ,
 		'\u2190': function(el){
@@ -42,7 +42,7 @@
 		
 			var
 			t=500 ,
-			m=3 ; /* def. margin */
+			m=0 ; /* def. margin */
 			
 			el.style.transition="right ."+t+"s ease" ;
 

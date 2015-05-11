@@ -1,7 +1,8 @@
-	
+
 	html, body{
 		margin:0;
 		height:100%;
+		font-family:fira sans ultralight;
 	}
 	
 	div{
@@ -9,71 +10,76 @@
 		overflow:hidden;
 	}
 	
+	.cont{
+		height:100%;
+		line-height:100%;
+	}
+	
+	.upprdisp{
+		overflow:hidden;
+		font-size:50%;
+		line-height:100%;
+	}
+	
+	.upprdisp button{
+		width:20%;
+		color:#000 !important;
+		background:none !important;
+	}
+	
+	.lowrdisp{}
+	
+	.lowrdisp p{
+		position:absolute;
+		right:0;
+		margin:0;
+		white-space:nowrap;
+	}
+	
 	button{
 		display:block;
 		float:left;
-		border:none;
+		line-height:inherit;
+		margin:0;
+		border:0;
+		padding:0;
+		outline:0 !important;
 		border-radius:0;
-		height:100%;
 		width:25%;
-		line-height:100%;
-		font-size:100%;
 		font-family:inherit;
-		color:#000;
+		font-weight:normal;
 		background:none;
+		color:#000;
 	}
 	
-	button::-moz-focus-inner{
-		border:none; /* no tab navigation */
+	button, p{
+		font-size:86.4%;
 	}
 	
 	button:focus{
-		outline:none;
+		padding-left:0;
 		background-color:#70BF53;
 		color:#fff;
 	}
 	
-	p{
-		position:absolute;
-		right:3px; /* def. margin */
-		bottom:3px;
-		margin:0;
-		line-height:100%; /* association with path */
-		white-space:nowrap;
+	button:active{
+		padding-left:5px;
 	}
 	
-	#appcont{
-		height:100%;
-		font-family:fira sans ultralight;
-		font-size:85%;
-		line-height:115%;
-		background-color:#fff;
+	button::-moz-focus-inner{
+		border:none; /* no tab navigation, rm 2% padding */
 	}
 	
-	#appcont > div{
-		height:14.28571428571429%;
-	}
-	
-	#appcont > div:first-child, #appcont > div:last-child{
-		height:7.142857142857143%;
-		font-size:50%;
-	}
-	
-	#appcont > div:first-child button{
-		width:16.66666666666667%;
-	}
-	
-	.green{
+	.green, .green:focus{
 		background-color:green;
 		color:#fff;
 	}
 	
-	.smoken{
-		font-size:75%;
-		color:#666;
+	.light, .lighter{
+		font-size:62.5%;
+		color:#999;
 	}
 	
-	.lighter{
-		font-size:75%;
-		color:#999;
+	.light{
+		color:#666;
 	}
