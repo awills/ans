@@ -7,7 +7,6 @@
 			html, body{
 				margin:0;
 				height:100%;
-				font-family:calibri;
 			}
 			
 			div{
@@ -16,50 +15,33 @@
 			
 			.cont{
 				height:100%;
-				line-height:100%;
 			}
 			
 			.cont > div{
-				margin:0 25%;
-				background:#fff;
-			}
-			
-			.disp{
 				position:absolute;
-				top:14.28571428571429%;
 				left:0;
 				right:0;
-				margin:0 10%;
-				font-size:80%;
-				text-align:right;
+				top:0;
+				bottom:0;
+				margin:12.5% 25%; /* 100/16*2, 100/4*/
+				background-color:#fff;
 			}
 			
-			.cont, .disp{
-				background:green;
+			.box{
+				height:12.5%;
+				margin:12.5%;
 			}
 			
-			.cont > div, .disp{/* border-radius:; */}
+			.cont, .box{
+				background-color:green;
+			}
 			
 		</style>
-		<script language="javascript">
-			
-			setFsByRow=function(value){
-			
-				document.body.style.fontSize=(document.body.clientHeight || document.documentElement.clientHeight || window.innerHeight)/value+"px" 
-			} ;
-			
-			onload=onresize=function(){
-					setFsByRow(7) 
-			} ;
-			
-		</script>
 	</head>
 	<body>
 		<div class="cont">
-			&nbsp;
 			<div>
-				<div class="disp">.&nbsp;</div>
-				&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+				<div class="box"></div>
 			</div>
 		</div>
 	</body>

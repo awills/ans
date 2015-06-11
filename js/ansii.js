@@ -1,5 +1,6 @@
 
 	/*
+		repo: https://github.com/wiedem/ansiijs.git
 		date: 26-01-15
 	*/
 
@@ -27,15 +28,13 @@
 				
 				/*
 					
-					parameters:
+					parameters
 					string -> a string value e.g '1200-/12'
 					char -> a numeric or non-numeric character e.g '0', '.' respectively
 					
-					function:
-					filter-out characters in a string.
-					returns a numeric or non-numeric char array e.g ['1200', '12'], ['--', '/'] respectively
+					function
+					filter-out characters in a string, returns a numeric or non-numeric char array e.g ['1200', '12'], ['--', '/'] respectively
 
-					note:
 					array values are strings.
 					scientific notation is erraoeous typeSplit should be used in such cases.
 					is implementated in typeSplit function please, include to work with typeSplit.
@@ -74,20 +73,19 @@
 		
 			var
 			typeSplit=function(string, char){
-				/* '+' must be appended at beginning of string */
 
 				/*
-					parameters:
+					parameters
 					string -> a string value e.g '1200--19e-7/12'
 					char -> a numeric or non-numeric character e.g '0', '.' respectively
 					
-					function:
-					filters numeric and scientific notation, non-numeric characters in a string.
-					returns a numeric or non-numeric char array e.g ['1200', '19e-7', '12'], ['--', '/'] respectively
-
-					note:
+					function
+					filters numeric and scientific notation, non-numeric characters in a string, returns a numeric or non-numeric char array e.g ['1200', '19e-7', '12'], ['--', '/'] respectively. 
+					
 					array values are strings
 				*/
+				
+				/* '+' must be appended at beginning of string */
 				
 				var
 				oo=bring(string, '.') ,
@@ -135,12 +133,11 @@
 			evop=function(string){
 				
 				/*
-					parameter:
+					parameter
 					string -> a string e.g '--+-'
 					
-					function:
-					evaluate operators.
-					returns a string 'sE' (syntax ERROR) if unsuccessful in evaluation
+					function
+					evaluate operators, returns a string 'sE' (syntax ERROR) if unsuccessful in evaluation
 					
 					'--+-' = '-'
 					'/--' = '/+'
@@ -217,13 +214,12 @@
 			evex=function(array, char){
 				
 				/*
-					parameters:
+					parameters
 					array -> an array of mathematical chars e.g ['+500', '/20']
 					char -> a high predesence operator e.g '/'
 					
-					function:
-					evaluate an array of mathematical characters.
-					returns a javascript number e.g 21, 2.3e-23
+					function
+					evaluate an array of mathematical characters, returns a javascript number e.g 21, 2.3e-23
 				*/
 				
 				var
@@ -272,60 +268,58 @@
 			} ;
 
 			var
-			convSpechars=function(string){
+			convToNative=function(string){
 				
 				/*
-					parameter: 
-					string -> a string containing chars or special chars from a dom element e.g '2+4/23'
+					parameter
+					string-> a string value containing supported operators
 					
-					covers characters:
-					modolus
-					division
-					multiplication
-					subtraction
-					addition
-					
-					function:
-					convert html special characters in a string to keyboard natives.
-					returns a string
+					function
+					converts characters to keyboard natives
 				*/
 				
-				var
-				spechar={
-					'\x25': '%' , /* no alternatives */
-					'\x2b': '+' ,
-				} ;
+				string=string
+					.split('\x25').join('%')
+					.split('\x2b').join('+')
+					.split('\x2f').join('/').split('\xf7').join('/')
+					.split('\x2a').join('*').split('\xd7').join('*')
+					.split('\x2d').join('-').split('\u2212').join('-')
+				;
 				
-				spechar['\x2f']=spechar['\xf7']='/' ;
-				spechar['\x2a']=spechar['\xd7']='*' ;
-				spechar['\x2d']=spechar['\u2212']='-' ;
-				
-				var
-				ln=string.length ,
-				a=0 ,
-				ar=[] ,
-				c ;
-				
-				for(; a<ln; a++) ar[a]=spechar[c=string.charAt(a)] || c ;
-				
-				return ar.join('')
+				return string
 			} ;
-
-			ansii=function(string){
+			
+			var
+			convToSpecial=function(string){
+			
+				/*
+					parameter
+					string-> a string value containing supported operators
+					
+					function
+					converts native characters to html special characters
+				*/
+				
+				string=string
+					.split('*').join('&times;')
+					.split('/').join('&divide;')
+					.split('-').join('&minus;')
+				;
+				
+				return string
+			} ;
+			
+			var
+			ansii=function(string, isreentry, option){
+				
+				string='+'+(!isreentry? convToNative(string): string) ;
 				
 				var
-				bool=!arguments[1] ;
+				err={} ;
 				
-				/* '+' appended to expr. */
-				string='+'+(bool? convSpechars(string): string) ;
-				
-				var
-				err={
-					'sE': "syntax ERROR" ,
-					'NaN': "char ERROR" 
-				} ;
-				
-				err['-Infinity']=err['Infinity']="division ERROR" ;
+				err.NaN="char ERROR" ;
+				err.sE="syntax ERROR" ;
+				err.Infinity=err['-Infinity']="division ERROR" ;
 				
 				var
 				oo=typeSplit(string, '.') ,
@@ -335,13 +329,38 @@
 				ln=oo.length ,
 				a=0 ,
 				c ,
-				ex=[] ;
+				ex=[] ,
+				exbk=[] ,
+				p={} ,
+				snp=[] ;
 				
 				for(; a<ln; a++){
 					
-					if(err[c=(o[a]*1)] || err[c=evop(oo[a])]) return err[c] ;
-					ex[a]=c+o[a]
-				}
+					snp[a]=oo[a]+(o[a] || 0) ;
+					
+					if(err[c=(o[a]*1)] || err[c=evop(oo[a])]){
+						
+						/* minus additional '+' */
+						p.errorat=''+(snp.join('').length-1) ;
+						
+						if(option in p) return p[option] ;
+						return err[c] ;
+					} 
+					
+					ex[a]=exbk[a]=c+o[a]
+				} 
+				
+				p.length=''+ex.length ;
+				p.increase=p.finish=ex[ln-1] ;
+				
+				c=(p.finish=p.finish.split('')).shift() ;
+				p.finish=p.finish.join('') ;
+				
+				p.unfinish=convToSpecial(ex.splice(0, p.length*1-1).join('')+c) ;
+				
+				ex=exbk ;
+				
+				if(option in p) return p[option] ;
 				
 				var
 				braced=[] ,
@@ -388,6 +407,20 @@
 				r ;
 				
 				return err[''+(r=evex(ex))] || r
+			} ;
+			
+			this.ans=function(expression, option){
+				
+				/*
+					parameter
+					expression-> string mathematical expression
+					option-> string operation options 'increase', 'finish', 'unfinish', 'errorat', 'length'
+					
+					function
+					return number or string
+				*/
+				
+				return ansii(expression, false, option) 
 			} ;
 			
 		}()
