@@ -27,7 +27,6 @@
 			bring=function(string, char){
 				
 				/*
-					
 					parameters
 					string -> a string value e.g '1200-/12'
 					char -> a numeric or non-numeric character e.g '0', '.' respectively
@@ -38,7 +37,6 @@
 					array values are strings.
 					scientific notation is erraoeous typeSplit should be used in such cases.
 					is implementated in typeSplit function please, include to work with typeSplit.
-					
 				*/
 
 				var
@@ -290,26 +288,6 @@
 			} ;
 			
 			var
-			convToSpecial=function(string){
-			
-				/*
-					parameter
-					string-> a string value containing supported operators
-					
-					function
-					converts native characters to html special characters
-				*/
-				
-				string=string
-					.split('*').join('&times;')
-					.split('/').join('&divide;')
-					.split('-').join('&minus;')
-				;
-				
-				return string
-			} ;
-			
-			var
 			ansii=function(string, isreentry, option){
 				
 				string='+'+(!isreentry? convToNative(string): string) ;
@@ -356,7 +334,7 @@
 				c=(p.finish=p.finish.split('')).shift() ;
 				p.finish=p.finish.join('') ;
 				
-				p.unfinish=convToSpecial(ex.splice(0, p.length*1-1).join('')+c) ;
+				p.unfinish=ex.splice(0, p.length*1-1).join('')+c ;
 				
 				ex=exbk ;
 				
@@ -417,11 +395,11 @@
 					option-> string operation options 'increase', 'finish', 'unfinish', 'errorat', 'length'
 					
 					function
-					return number or string
+					evaluates valid expr. returns number or string
 				*/
 				
 				return ansii(expression, false, option) 
-			} ;
+			} 
 			
 		}()
 	) ;

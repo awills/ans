@@ -1,5 +1,5 @@
 #Ans
-Ans is a simple calculator to test out and promote ansii.js, it is developed as a webapp for various devices.
+Ans is a simple calculator to test out and promote ans.js, it is developed as a webapp for various devices.
 
 ##feature
 clear/crop expr.
