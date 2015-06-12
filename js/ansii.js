@@ -1,11 +1,10 @@
 
 	/*
-		repo: https://github.com/aedem/Ans.git
 		date: 26-01-15
 	*/
 
 	/*
-	   Copyright 2015 Abraham edem
+	   Copyright 2015 Abraham Edem
 
 	   Licensed under the Apache License, Version 2.0 (the "License");
 	   you may not use this file except in compliance with the License.

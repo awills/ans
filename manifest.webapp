@@ -1,12 +1,9 @@
 {
 	"name": "Ans" ,
-	"description": "Ans is an everyday calculator app for fxos devices and a beta update of the free Ans-ii or Ansii app for multiple platforms" ,
+	"description": "everyday calculator app for fxos devices and a beta update of the free Ansii calculator app" ,
 	"version": "v1.0" ,
 	"default_locale": "en" ,
-	"developer": {
-		"name": "Abraham Edem" ,
-		"email": "abrahamedem@yahoo.com"
-	} ,
+	"developer": {} ,
 	"launch_path": "/index.html" ,
 	"icons": {}
 }

@@ -1,6 +1,6 @@
 
 	/*	
-		wiedem 05-06-2015
+		05-06-2015
 	*/
 	
 	(
@@ -76,9 +76,11 @@
 					if(this.ib){
 						if(r!=1) this.ib='' ;
 						
+						if(er[r=ans(expr+this.ib)]) return ;
+						
 						if(this.ib){
 							
-							this.write(primaryoutput, ans(expr+this.ib)) ;
+							this.write(primaryoutput, r) ;
 							this.conv(primaryoutput) ;
 							
 							this['\xab'](primaryoutput, secondaryoutput, button) ;
