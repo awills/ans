@@ -2,6 +2,7 @@
 	html, body{
 		height:100%;
 		font-family:fira sans ultralight;
+		background-color:#fff;
 	}
 	
 	body, div, p, ul, button{
@@ -22,6 +23,7 @@
 		font-family:inherit;
 		background:none;
 		color:#000;
+		transition:font-size .8s ease;
 	}
 	
 	button::-moz-focus-inner{

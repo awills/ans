@@ -7,12 +7,6 @@
 		function(){
 			
 			var
-			setFsByRowCount=function(value){
-				
-				document.body.style.fontSize=(document.body.clientHeight || document.documentElement.clientHeight || window.innerHeight)/value+"px" 
-			} ;
-			
-			var
 			charsac={
 				'C':function(primaryoutput, secondaryoutput, button){
 					
@@ -289,7 +283,15 @@
 			} ;
 			
 			var
-			kbc=function(primaryoutputelement, secondaryoutputelement, characteraction){
+			kbc=function(rows, primaryoutputelement, secondaryoutputelement, characteraction){
+				
+				var
+				rowsTofs=function(value){
+					
+					document.body.style.fontSize=(document.body.clientHeight || document.documentElement.clientHeight || window.innerHeight)/value+"px" 
+				} ;
+				
+				rowsTofs(rows) ;
 				
 				var
 				write ,
@@ -385,24 +387,24 @@
 						overflowchk() ;
 						move[swipe.dir](begin/2) 
 					} 
-				}) 
+				}) ;
+				
+				window.addEventListener('resize',function(){
+					
+					rowsTofs(rows) ;
+					overflowchk()
+					
+				}, false) 
 			} ;
 			
 			window.addEventListener('load', function(){
 				
-				setFsByRowCount(7) ;
-				kbc(po, so, charsac) ;
+				kbc(7, po, so, charsac) ;
 				
 				po.addEventListener('click', function(){
 					
 					mo.style.left={'0%': '100%', '100%': '0%'}[mo.style.left] || '0%' ;
 				}, false)
-				
-			}, false) ;
-			
-			window.addEventListener('resize', function(){
-			
-				setFsByRowCount(7) 
 				
 			}, false) ;
 			
