@@ -7,6 +7,31 @@
 		function(){
 			
 			var
+			lodfn ,
+			togfn ,
+			autofs ;
+			
+			var
+			charsac ,
+			kbc ;
+			
+			togfn=function(){
+				
+				var
+				c={
+					'0':1 ,
+					'1':0
+				} ;
+				
+				b1.style.zIndex=c[b1.style.zIndex || 1] ;
+				b2.style.zIndex=c[b2.style.zIndex || 0] 
+			} ;
+			
+			autofs=function(row){
+				
+				document.body.style.fontSize=(document.body.clientHeight || document.documentElement.clientHeight || window.innerHeight)/row+"px" 
+			} ;
+			
 			charsac={
 				'C':function(primaryoutput, secondaryoutput, button){
 					
@@ -144,90 +169,46 @@
 				'cube':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'pow', 3) ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'square':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'pow', 2) ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'square-root':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'sqrt') ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'log':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'log10') ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'sin':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'sin') ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'cos':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'cos') ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'tan':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'tan') ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'sinh':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'sinh') ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'cosh':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'cosh') ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'tanh':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'tanh') ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'ln':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'log') ;
-					
-					/* element */
-					mo.style.left='100%' ;
-					this['\xbb'](primaryoutput)
 				} ,
 				'pi':function(primaryoutput){
 					
@@ -240,8 +221,48 @@
 						this.conv(primaryoutput) 
 					}
 					
-					/* element */
-					mo.style.left='100%' ;
+					togfn() ;
+					this['\xbb'](primaryoutput)
+				} ,
+				'E':function(primaryoutput){
+					
+					var
+					er={} ;
+					er['syntax ERROR']=er['char ERROR']=er['division ERROR']=er['Infinity']=er['-Infinity']=er['NaN']=1 ;
+					
+					var
+					expr=primaryoutput.textContent ,
+					r ,
+					ln ,
+					t ;
+					
+					r=ans(expr, 'finish') ;
+					
+					if(er[r]) return ;
+					
+					if(r.split('E').length==1) r=r+'E-0' ;
+					
+					ln=r.split('E')[0].length ;
+					r=r.split('') ;
+					
+					t={
+						'-': '+' ,
+						'+': '-'
+					}
+					
+					r.splice(ln, 2, 'E', t[r[ln+1]]) ;
+					r=r.join('') ;
+					
+					r=ans(expr, 'unfinish')+r ;
+					
+					if(r.charAt(0)=='+'){
+						
+						(r=r.split('')).shift() ;
+						r=r.join('')
+					}
+					
+					this.write(primaryoutput, r) ;
+					this.conv(primaryoutput) ;
 					this['\xbb'](primaryoutput)
 				} ,
 				'operation':function(primaryoutput, type, superscript){
@@ -277,26 +298,25 @@
 						}
 						
 						this.write(primaryoutput, r) ;
-						this.conv(primaryoutput) 
+						this.conv(primaryoutput) ;
+						this['\xbb'](primaryoutput) ;
+						
+						togfn()
 					} 
 				} 
 			} ;
 			
-			var
-			kbc=function(rows, primaryoutputelement, secondaryoutputelement, characteraction){
+			kbc=function(primaryoutputelement, secondaryoutputelement, characteraction, togglefunc){
 				
-				var
-				rowsTofs=function(value){
-					
-					document.body.style.fontSize=(document.body.clientHeight || document.documentElement.clientHeight || window.innerHeight)/value+"px" 
-				} ;
-				
-				rowsTofs(rows) ;
+				assignEvent('touchend', togglefunc, primaryoutputelement) ;
 				
 				var
 				write ,
 				overflowchk ,
-				hasValue ;
+				hasValue ,
+				indicator ,
+				enfn ,
+				resfn ;
 				
 				var
 				writebutton=document.getElementsByTagName('button') ,
@@ -306,14 +326,12 @@
 				var
 				readbutton={} ;
 				
-				var
 				indicator=function(buttonchar, newchar){
 				
 					readbutton[buttonchar].innerHTML=newchar
 				} ;
 				
-				var
-				fn=function(){
+				enfn=function(){
 					
 					var
 					c ;
@@ -332,7 +350,7 @@
 				for(; a<ln; a++){
 					
 					if(writebutton[a].textContent in characteraction) readbutton[writebutton[a].textContent]=writebutton[a] ;
-					writebutton[a].addEventListener('click', fn, false)
+					assignEvent('touchend', enfn, writebutton[a]) 
 				}
 				
 				write=function(value){
@@ -377,36 +395,31 @@
 					}
 				} ;
 				
-				var
-				begin=10 ;
-				
 				joy(function(swipe){
-				
-					if(move[swipe.dir] && swipe.length>begin && hasValue()){
+					
+					if(move[swipe.hdir] && hasValue()){
 						
-						overflowchk() ;
-						move[swipe.dir](begin/2) 
-					} 
+						move[swipe.hdir](5) ;
+						overflowchk() 
+					}
 				}) ;
 				
-				window.addEventListener('resize',function(){
-					
-					rowsTofs(rows) ;
+				resfn=function(){
+				
+					autofs(7) ;
 					overflowchk()
-					
-				}, false) 
+				} ;
+				
+				window.addEventListener('resize', resfn, false)
 			} ;
 			
-			window.addEventListener('load', function(){
+			lodfn=function(){
 				
-				kbc(7, po, so, charsac) ;
-				
-				po.addEventListener('click', function(){
-					
-					mo.style.left={'0%': '100%', '100%': '0%'}[mo.style.left] || '0%' ;
-				}, false)
-				
-			}, false) ;
+				autofs(7) ;
+				kbc(po, so, charsac, togfn)
+			} ;
+			
+			window.addEventListener('load', lodfn, false)
 			
 		}()
 	) ;
