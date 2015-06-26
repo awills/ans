@@ -14,4 +14,4 @@ operator eval.
 ##Contribution
 not much contribution needed, you're welcome anyway.
 
-* Available under apache licence 2.0 *
+Available under apache licence 2.0

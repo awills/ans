@@ -1,7 +1,7 @@
 {
 	"name": "Ans" ,
-	"description": "everyday calculator app for fxos devices and a beta update of the free Ansii calculator app" ,
-	"version": "v1.0" ,
+	"description": "everyday calculator app for fxos devices" ,
+	"version": "v1.1" ,
 	"default_locale": "en" ,
 	"developer": {} ,
 	"launch_path": "/index.html" ,
