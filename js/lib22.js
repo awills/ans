@@ -263,7 +263,9 @@
 					
 					this.write(primaryoutput, r) ;
 					this.conv(primaryoutput) ;
-					this['\xbb'](primaryoutput)
+					this['\xbb'](primaryoutput) ;
+					
+					this.ib=''
 				} ,
 				'operation':function(primaryoutput, type, superscript){
 					
