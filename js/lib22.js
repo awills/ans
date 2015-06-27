@@ -169,46 +169,57 @@
 				'cube':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'pow', 3) ;
+					togfn()
 				} ,
 				'square':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'pow', 2) ;
+					togfn()
 				} ,
 				'square-root':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'sqrt') ;
+					togfn()
 				} ,
 				'log':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'log10') ;
+					togfn()
 				} ,
 				'sin':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'sin') ;
+					togfn()
 				} ,
 				'cos':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'cos') ;
+					togfn()
 				} ,
 				'tan':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'tan') ;
+					togfn()
 				} ,
 				'sinh':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'sinh') ;
+					togfn()
 				} ,
 				'cosh':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'cosh') ;
+					togfn()
 				} ,
 				'tanh':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'tanh') ;
+					togfn()
 				} ,
 				'ln':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'log') ;
+					togfn()
 				} ,
 				'pi':function(primaryoutput){
 					
@@ -301,9 +312,7 @@
 						
 						this.write(primaryoutput, r) ;
 						this.conv(primaryoutput) ;
-						this['\xbb'](primaryoutput) ;
-						
-						togfn()
+						this['\xbb'](primaryoutput) 
 					} 
 				} 
 			} ;
