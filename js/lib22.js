@@ -238,45 +238,30 @@
 				'E':function(primaryoutput){
 					
 					var
-					er={} ;
-					er['syntax ERROR']=er['char ERROR']=er['division ERROR']=er['Infinity']=er['-Infinity']=er['NaN']=1 ;
-					
-					var
 					expr=primaryoutput.textContent ,
-					r ,
-					ln ,
-					t ;
+					ln=expr.length ,
+					c=expr.charAt(ln-2)+expr.charAt(ln-1) ;
 					
-					r=ans(expr, 'finish') ;
-					
-					if(er[r]) return ;
-					
-					if(r.split('E').length==1) r=r+'E-0' ;
-					
-					ln=r.split('E')[0].length ;
-					r=r.split('') ;
-					
+					/* octal '-' */
+					var
 					t={
-						'-': '+' ,
-						'+': '-'
-					}
+						'E\u2212':'E+' ,
+						'E+': 'E\u2212' 
+					} ;
 					
-					r.splice(ln, 2, 'E', t[r[ln+1]]) ;
-					r=r.join('') ;
-					
-					r=ans(expr, 'unfinish')+r ;
-					
-					if(r.charAt(0)=='+'){
+					if(t[c]){
 						
-						(r=r.split('')).shift() ;
-						r=r.join('')
+						(expr=expr.split('')).pop() ;
+						expr.pop() ;
+						
+						this.write(primaryoutput, expr.join('')+t[c])
 					}
+					else primaryoutput.innerHTML+='E+' ;
 					
-					this.write(primaryoutput, r) ;
 					this.conv(primaryoutput) ;
 					this['\xbb'](primaryoutput) ;
 					
-					this.ib=''
+					this.ib='' 
 				} ,
 				'operation':function(primaryoutput, type, superscript){
 					
