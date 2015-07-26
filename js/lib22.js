@@ -60,11 +60,14 @@
 					ar=primaryoutput.textContent.split('') ;
 					ar.pop() ;
 					
-					/* correcting */
-					primaryoutput.innerHTML=ar.join('') 
-						.split('E').join('<small>E</small>')
-						.split('%').join('<small>%</small>') 
-					;
+					var
+					c=ar.pop() ;
+					if(c!='E') ar=ar.concat(c) ;
+					
+					primaryoutput.innerHTML=ar.join('') ;
+					this.conv(primaryoutput) ;
+					
+					this.ib=''
 				} ,
 				'=':function(primaryoutput, secondaryoutput, button){
 					
@@ -114,7 +117,6 @@
 					this.conv(primaryoutput) ;
 					
 					this['\xab'](primaryoutput, secondaryoutput, button)
-					
 				} ,
 				'\xa0':function(){/* &nbsp; */} ,
 				'\xab':function(primaryoutput, secondaryoutput, button){
@@ -160,8 +162,10 @@
 				'conv':function(el){
 					
 					el.innerHTML=el.textContent
-						.split('E').join('<small>E</small>')
-						.split('e').join('<small>E</small>')
+						.split('E+').join('<small>E+</small>') 
+						.split('e+').join('<small>E+</small>') 
+						.split('E\u2212').join('<small>E\u2212</small>') 
+						.split('e-').join('<small>E\u2212</small>') 
 						.split('%').join('<small>%</small>')
 						.split('-').join('&minus;')
 					;
@@ -354,7 +358,6 @@
 					var
 					c={
 						'%': '<small>%</small>' ,
-						'E': '<small>E</small>+' ,
 						'\xb7': '.'
 					} ;
 					
