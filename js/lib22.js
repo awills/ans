@@ -37,18 +37,20 @@
 					
 					if(button['C'].style.fontStyle){
 						
-						/* crop expr. */
 						var
 						expr=primaryoutput.textContent ,
 						ln=expr.length-(ans(expr, 'errorat')*1) ,
 						a=0 ;
 						
-						for(; a<ln; a++) this['\u2190'](primaryoutput) ;
+						for(; a<ln; a++){
+							
+							if(this['\u2190'](primaryoutput)) ln-- ;
+						}
 						
 						button['C'].style.fontStyle='' ;
+						this['\xbb'](primaryoutput) ;
 						
-						this['\xbb'](primaryoutput)
-						return 
+						return
 					}
 					
 					/* reset */
@@ -61,13 +63,16 @@
 					ar.pop() ;
 					
 					var
-					c=ar.pop() ;
-					if(c!='E') ar=ar.concat(c) ;
+					c=ar.pop() ,
+					b ;
+					
+					if(b=c!='E') ar=ar.concat(c) ;
 					
 					primaryoutput.innerHTML=ar.join('') ;
 					this.conv(primaryoutput) ;
 					
-					this.ib=''
+					this.ib='' ;
+					return !b 
 				} ,
 				'=':function(primaryoutput, secondaryoutput, button){
 					
@@ -333,6 +338,9 @@
 				
 				enfn=function(){
 					
+					/* force focus */
+					this.focus() ;
+					
 					var
 					c ;
 					
@@ -419,6 +427,5 @@
 			} ;
 			
 			window.addEventListener('load', lodfn, false)
-			
 		}()
 	) ;
