@@ -3,6 +3,7 @@
 		height:100%;
 		font-family:fira sans ultralight;
 		background-color:#fff;
+		color:#000;
 	}
 	
 	body, div, p, ul, button{
@@ -22,7 +23,7 @@
 		line-height:inherit;
 		font-family:inherit;
 		background:none;
-		color:#000;
+		color:inherit;
 		white-space:nowrap;
 	}
 	
@@ -30,15 +31,18 @@
 		border:none; 
 	}
 	
+	small{line-height:100%;}
+	
 	.app_cn{
 		height:100%;
 		line-height:100%;
+		background-color:inherit;
 	}
 	
 	.app_cn > div{
 		position:absolute;
 		width:100%;
-		background-color:#fff;
+		background-color:inherit;
 	}
 	
 	.shrt_cal{
@@ -64,7 +68,6 @@
 	
 	.tall_cal{
 		height:100%;
-		overflow:none;
 		overflow-y:auto;
 		z-index:0;
 	}
@@ -77,6 +80,10 @@
 	.tall_cal p{
 		position:absolute;
 		z-index:1;
+	}
+	
+	.tall_cal p:first-letter{
+		text-transform:uppercase;
 	}
 	
 	.tall_cal button:focus{
@@ -97,6 +104,11 @@
 	.emph{opacity:.5;}
 	.demph{opacity:.4;}
 	
+	.green{
+		background-color:green !important;
+		color:#fff;
+	}
+	
 	.spcl{
 		overflow:visible;
 		float:none;
@@ -105,7 +117,9 @@
 		font-size:80% !important;
 	}
 	
-	.green{
-		background-color:green !important;
-		color:#fff;
+	.spcl:focus{
+		padding:0 !important;
+		background:none !important;
+		color:inherit !important;
+		text-shadow:0 0 1px #000;
 	}

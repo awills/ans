@@ -8,24 +8,11 @@
 			
 			var
 			lodfn ,
-			togfn ,
 			autofs ;
 			
 			var
 			charsac ,
 			kbc ;
-			
-			togfn=function(){
-				
-				var
-				c={
-					'0':1 ,
-					'1':0
-				} ;
-				
-				b1.style.zIndex=c[b1.style.zIndex || 1] ;
-				b2.style.zIndex=c[b2.style.zIndex || 0] 
-			} ;
 			
 			autofs=function(row){
 				
@@ -175,60 +162,68 @@
 						.split('-').join('&minus;')
 					;
 				} ,
+				'zTog':function(pattern){
+					
+					setTimeout(function(){
+					
+						b1.style.zIndex=pattern[b1.style.zIndex] || 0 ;
+						b2.style.zIndex=pattern[b2.style.zIndex] || 1 ;
+					}, 1)
+				} ,
 				'cube':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'pow', 3) ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'square':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'pow', 2) ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'square-root':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'sqrt') ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'log':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'log10') ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'sin':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'sin') ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'cos':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'cos') ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'tan':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'tan') ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'sinh':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'sinh') ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'cosh':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'cosh') ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'tanh':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'tanh') ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'ln':function(primaryoutput){
 					
 					this.operation(primaryoutput, 'log') ;
-					togfn()
+					this.zTog({'0':1, '1':1})
 				} ,
 				'pi':function(primaryoutput){
 					
@@ -241,7 +236,7 @@
 						this.conv(primaryoutput) 
 					}
 					
-					togfn() ;
+					this.zTog({'0':1, '1':1})
 					this['\xbb'](primaryoutput)
 				} ,
 				'E':function(primaryoutput){
@@ -311,9 +306,15 @@
 				} 
 			} ;
 			
-			kbc=function(primaryoutputelement, secondaryoutputelement, characteraction, togglefunc){
+			kbc=function(primaryoutputelement, secondaryoutputelement, characteraction){
 				
-				assignEvent('touchend', togglefunc, primaryoutputelement) ;
+				var
+				pefn=function(){
+					
+					characteraction.zTog({'0':1, '1':0})
+				} ;
+				
+				assignEvent('touchend', pefn, primaryoutputelement) ;
 				
 				var
 				write ,
@@ -404,9 +405,9 @@
 				
 				joy(function(swipe){
 					
-					if(move[swipe.hdir] && hasValue()){
+					if(swipe.restrictId('b2') && move[swipe.hdir] && hasValue()){
 						
-						move[swipe.hdir](5) ;
+						move[swipe.hdir](4) ;
 						overflowchk() 
 					}
 				}) ;
@@ -423,7 +424,7 @@
 			lodfn=function(){
 				
 				autofs(7) ;
-				kbc(po, so, charsac, togfn)
+				kbc(po, so, charsac)
 			} ;
 			
 			window.addEventListener('load', lodfn, false)

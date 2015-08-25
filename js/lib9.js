@@ -66,6 +66,21 @@
 			} ;
 			
 			mvfn=function(e){
+				
+				/* restrictions */
+				inf.restrictId=function(id){
+					
+					var
+					t=e.target ;
+					
+					for(;;){
+						
+						if({'null':1}[t]) return true;
+						if(t.id==id) return false ;
+						
+						t=t.parentNode ;
+					}
+				} ;
 			
 				/* singie */
 				x.push(e.touches[0].clientX) ;
