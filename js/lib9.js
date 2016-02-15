@@ -39,11 +39,7 @@
 			var
 			inf={
 				length: 0 ,
-<<<<<<< HEAD
 				keystart: 0
-=======
-				keystart: 5 
->>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 			} ;
 			
 			hDir=function(x, advanceX){

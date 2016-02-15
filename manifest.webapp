@@ -1,6 +1,5 @@
 {
 	"name": "Ans" ,
-<<<<<<< HEAD
 	"description": "everyday calculator app for everyone" ,
 	"version": "1.5" ,
 	"default_locale": "en" ,
@@ -8,12 +7,3 @@
 	"launch_path": "/index.html" ,
 	"icons": {} 
 } 
-=======
-	"description": "everyday calculator app for fxos devices" ,
-	"version": "v1.1" ,
-	"default_locale": "en" ,
-	"developer": {} ,
-	"launch_path": "/index.html" ,
-	"icons": {}
-}
->>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
