@@ -1,12 +1,38 @@
 
+<<<<<<< HEAD
+=======
 	/*	
 		05-06-2015
 	*/
 	
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 	(
 		function(){
 			
 			var
+<<<<<<< HEAD
+			ev ,
+			fs ,
+			scroll ,
+			gototop ,
+			display ,
+			kbc ,
+			charsac ,
+			corrchars ;
+			
+			// break
+			
+			corrchars=function(el, s, bool){
+				
+				el.innerHTML=s
+					.split('E').join('e')
+					.split('\xb7').join('.')
+					.split('%').join('<small>%</small>')
+					.split('-').join('&minus;')
+					.split('open (').join('(')
+					.split('close )').join(')')
+				;
+=======
 			lodfn ,
 			autofs ;
 			
@@ -17,6 +43,7 @@
 			autofs=function(row){
 				
 				document.body.style.fontSize=(document.body.clientHeight || document.documentElement.clientHeight || window.innerHeight)/row+"px" 
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 			} ;
 			
 			charsac={
@@ -26,6 +53,12 @@
 						
 						var
 						expr=primaryoutput.textContent ,
+<<<<<<< HEAD
+						ln=expr.length-(eval2('errorat('+expr+')')*1) ,
+						a=0 ;
+						
+						for(; a<ln; a++) this['\u2190'](primaryoutput) ;
+=======
 						ln=expr.length-(ans(expr, 'errorat')*1) ,
 						a=0 ;
 						
@@ -33,14 +66,18 @@
 							
 							if(this['\u2190'](primaryoutput)) ln-- ;
 						}
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 						
 						button['C'].style.fontStyle='' ;
 						this['\xbb'](primaryoutput) ;
 						
 						return
 					}
+<<<<<<< HEAD
+=======
 					
 					/* reset */
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 					primaryoutput.style.right=primaryoutput.innerHTML=this.ib='' 
 				} ,
 				'\u2190':function(primaryoutput){
@@ -49,6 +86,12 @@
 					ar=primaryoutput.textContent.split('') ;
 					ar.pop() ;
 					
+<<<<<<< HEAD
+					primaryoutput.innerHTML=ar.join('') ;
+					corrchars(primaryoutput, primaryoutput.textContent) ;
+					
+					this.ib='' 
+=======
 					var
 					c=ar.pop() ,
 					b ;
@@ -60,10 +103,41 @@
 					
 					this.ib='' ;
 					return !b 
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 				} ,
 				'=':function(primaryoutput, secondaryoutput, button){
 					
 					var
+<<<<<<< HEAD
+					expr ,
+					r ,
+					er={} ;
+					
+					if(!(expr=primaryoutput.textContent).length) return ;
+					
+					r=eval2('('+expr+')') ;
+					
+					er['sE']="syntax<br/>ERROR" ;
+					er['cE']="char<br/>ERROR" ;
+					er['dE']="division<br/>ERROR" ;
+					er['uE']="unmatch<br/>ERROR" ;
+					
+					if(er[r]){
+						
+						this.write(secondaryoutput, er[r], 500) ;
+						button['C'].style.fontStyle=(expr.length-(eval2('errorat('+expr+')')*1)<=0)? '': 'italic' ;
+						
+						return
+					}
+					
+					r=eval2('length('+expr+')') ;
+					
+					if(this.ib){
+						
+						if(r!=1) this.ib='' ;
+						
+						if(er[r=eval2('('+expr+'+'+this.ib+')')]) return ;
+=======
 					expr ;
 					
 					if(!(expr=primaryoutput.textContent).length) return ;
@@ -91,23 +165,36 @@
 						if(r!=1) this.ib='' ;
 						
 						if(er[r=ans(expr+this.ib)]) return ;
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 						
 						if(this.ib){
 							
 							this.write(primaryoutput, r) ;
+<<<<<<< HEAD
+=======
 							this.conv(primaryoutput) ;
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 							
 							this['\xab'](primaryoutput, secondaryoutput, button) ;
 							return
 						}
 					}
 					
+<<<<<<< HEAD
+					if(r==2) this.ib=eval2('increase('+expr+')') ;
+					
+					this.write(primaryoutput, eval2('('+expr+')')) ;
+					button['C'].style.fontStyle='' ;
+					
+					corrchars(primaryoutput, primaryoutput.textContent) ;
+=======
 					if(r==2) this.ib=ans(expr, 'increase') ;
 					
 					this.write(primaryoutput, ans(expr)) ;
 					button['C'].style.fontStyle='' ;
 					this.conv(primaryoutput) ;
 					
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 					this['\xab'](primaryoutput, secondaryoutput, button)
 				} ,
 				'\xa0':function(){/* &nbsp; */} ,
@@ -116,7 +203,11 @@
 					
 					var
 					t=500 ,
+<<<<<<< HEAD
+					w=button['\xa0'].clientWidth ;
+=======
 					w=button['\xa0'].clientWidth/2 ;
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 					
 					primaryoutput.style.transition="right ."+t+"s ease" ;
 					setTimeout(function(){primaryoutput.style.transition=''}, t) ;
@@ -142,14 +233,25 @@
 					
 					primaryoutput.style.right='' 
 				} ,
+<<<<<<< HEAD
+=======
 				'toRad':function(value){
 					
 					return value*1*Math.PI/180 
 				} ,
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 				'write':function(el, text, delay){
 					
 					el.innerHTML=text ;
 					if(delay) setTimeout(function(){el.innerHTML=''}, delay) ;
+<<<<<<< HEAD
+				}
+			} ;
+				
+			kbc=function(primaryoutputelement, secondaryoutputelement, characteraction){
+				
+				var
+=======
 				} ,
 				'conv':function(el){
 					
@@ -317,6 +419,7 @@
 				assignEvent('touchend', pefn, primaryoutputelement) ;
 				
 				var
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 				write ,
 				overflowchk ,
 				hasValue ,
@@ -339,8 +442,15 @@
 				
 				enfn=function(){
 					
+<<<<<<< HEAD
+					
+					/* force css focus declarations */
+					this.focus() ;
+					gototop(1) ;
+=======
 					/* force focus */
 					this.focus() ;
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 					
 					var
 					c ;
@@ -364,6 +474,10 @@
 				
 				write=function(value){
 					
+<<<<<<< HEAD
+					primaryoutputelement.innerHTML+=value ;
+					corrchars(primaryoutputelement, primaryoutputelement.textContent)
+=======
 					var
 					c={
 						'%': '<small>%</small>' ,
@@ -371,6 +485,7 @@
 					} ;
 					
 					primaryoutputelement.innerHTML+=c[value] || value
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 				} ;
 				
 				overflowchk=function(){
@@ -405,7 +520,11 @@
 				
 				joy(function(swipe){
 					
+<<<<<<< HEAD
+					if(swipe.restrictId('opaque') && move[swipe.hdir] && hasValue()){
+=======
 					if(swipe.restrictId('b2') && move[swipe.hdir] && hasValue()){
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 						
 						move[swipe.hdir](4) ;
 						overflowchk() 
@@ -414,13 +533,68 @@
 				
 				resfn=function(){
 				
+<<<<<<< HEAD
+=======
 					autofs(7) ;
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 					overflowchk()
 				} ;
 				
 				window.addEventListener('resize', resfn, false)
 			} ;
 			
+<<<<<<< HEAD
+			display=function(elem1, elem2, bool){
+				
+				if(bool){
+					
+					elem1.style.visibility="hidden" ;
+					elem2.style.visibility="visible" 
+					return
+				}
+				elem1.style.visibility="visible" ;
+				elem2.style.visibility="hidden" 
+			} ;
+		
+			gototop=function(bool){
+				
+				if(bool) opaque.scrollTop=0 ;
+			} ;
+		
+			scroll=function(){
+				
+				return opaque.scrollTop
+			} ;
+		
+			fs=function(r){
+				
+				var
+				n=document.body.clientHeight/(r || 1) ;
+				
+				document.body.style.fontSize=n+'px' ;
+				return n
+			} ;
+			
+			ev=function(e){
+				
+				if(e.type=="load" || e.type=="resize") fs(7) ;
+				
+				if(e.type=="load"){
+					
+					opaque.addEventListener('scroll', ev, false) ;
+					kbc(po, so, charsac)
+				}
+				
+				if(e.type=="scroll") display(s1, s2, scroll()) ;
+			} ;
+			
+			// break
+			
+			window.addEventListener('load', ev, false)
+			window.addEventListener('resize', ev, false)
+		}()
+	)
+=======
 			lodfn=function(){
 				
 				autofs(7) ;
@@ -430,3 +604,4 @@
 			window.addEventListener('load', lodfn, false)
 		}()
 	) ;
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653

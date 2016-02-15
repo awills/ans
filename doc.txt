@@ -1,0 +1,77 @@
+bring
+------------
+parameters
+string -> a string value e.g '1200-/12'
+char -> a numeric or non-numeric character e.g '0', '.' respectively
+
+function
+filter-out characters in a string, returns a numeric or non-numeric char array e.g ['1200', '12'], ['--', '/'] respectively
+
+array values are strings.
+scientific notation is erraoeous typeSplit should be used in such cases.
+is implementated in typeSplit function please, include to work with typeSplit.
+
+typeSplit
+---------------
+parameters
+string -> a string value e.g '1200--19e-7/12'
+char -> a numeric or non-numeric character e.g '0', '.' respectively
+
+function
+filters numeric and scientific notation, non-numeric characters in a string, returns a numeric or non-numeric char array e.g ['1200', '19e-7', '12'], ['--', '/'] respectively. 
+
+array values are strings
+
+evop
+----------
+parameter
+string -> a string e.g '--+-'
+
+function
+evaluate operators, returns a string 'sE' (syntax ERROR) if unsuccessful in evaluation
+
+'--+-' = '-'
+'/--' = '/+'
+'/--+*' = 'sE'
+
+evex
+-------
+parameters
+array -> an array of mathematical chars e.g ['+500', '/20']
+char -> a high predesence operator e.g '/'
+
+function
+evaluate an array of mathematical characters, returns a javascript number e.g 21, 2.3e-23
+
+ansii
+--------
+parameter
+string-> string mathematical expression
+option-> string operation options 'increase', 'finish', 'unfinish', 'errorat', 'length'
+
+function
+evaluates valid expr. returns number or string
+
+parp
+--------
+parameter
+s-> string mathematical expression
+
+function
+parses parenthesis and manages math function invocations
+
+eval2
+---------
+parameter
+s-> string mathematical expression
+
+function
+character, math constants conversion
+
+parindex
+--------
+parameter
+s-> string mathematical expression
+
+function
+returns indexes of discovered nested parenthesis as array

@@ -8,7 +8,11 @@ scientific operations
 scientific notation  
 visual navigation  
 error report  
+<<<<<<< HEAD
+precedence eval.  
+=======
 predescence eval.  
+>>>>>>> b7301e4162362a6f4af6763cfaef105da1461653
 operator eval.  
 
 ##Contribution
